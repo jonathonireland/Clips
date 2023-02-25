@@ -14,6 +14,8 @@ import { NgModule } from '@angular/core';
   exports: [
     ModalComponent
   ],
-  providers: [ModalService]
+  providers: [
+    ModalService
+  ]
 })
 export class SharedModule { }
