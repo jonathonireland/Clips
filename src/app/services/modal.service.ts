@@ -37,5 +37,4 @@ export class ModalService {
     // this.visible = !this.visible
   }
 
-
 }
