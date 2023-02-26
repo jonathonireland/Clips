@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { ModalService } from 'src/app/services/modal.service';
+
 @Component({
   selector: 'app-auth-modal',
   templateUrl: './auth-modal.component.html',
@@ -7,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthModalComponent implements OnInit {
 
-  constructor() { }
+  constructor(public modal: ModalService) { }
 
   ngOnInit(): void {
+    this.modal.register('auth')
   }
 
 }
