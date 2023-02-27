@@ -2,28 +2,25 @@
  <form [formGroup]="registerForm">
     <!-- Name -->
     <div class="mb-3">
-        <label class="inline-block mb-2">Name</label>
-       <app-input [control]="name"></app-input>
+       <label class="inline-block mb-2">Name</label>
+       <app-input [control]="name" placeholder="Enter name"></app-input>
     </div>
     <!-- Email -->
     <div class="mb-3">
-        <label class="inline-block mb-2">Email</label>
-        <input formControlName="email" type="email"
-        class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
-            duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
-        placeholder="Enter Email" />
+       <label class="inline-block mb-2">Email</label>
+       <app-input [control]="email" placeholder="Enter email" type="email"></app-input>
     </div>
     <!-- Age -->
     <div class="mb-3">
         <label class="inline-block mb-2">Age</label>
-        <input formControlName="age" type="number"
+        <input type="number"
         class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
             duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400" />
     </div>
     <!-- Password -->
     <div class="mb-3">
         <label class="inline-block mb-2">Password</label>
-        <input formControlName="password" type="password"
+        <input type="password"
         class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
             duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
         placeholder="Password" />
@@ -31,7 +28,7 @@
     <!-- Confirm Password -->
     <div class="mb-3">
         <label class="inline-block mb-2">Confirm Password</label>
-        <input formControlName="confirmPassword" type="password"
+        <input type="password"
         class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
             duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
         placeholder="Confirm Password" />
@@ -39,7 +36,7 @@
     <!-- Phone Number -->
     <div class="mb-3">
         <label class="inline-block mb-2">Phone Number</label>
-        <input formControlName="phoneNumber" type="text"
+        <input type="text"
         class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
             duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
         placeholder="Enter Phone Number" />
