@@ -2,43 +2,23 @@
  <form [formGroup]="registerForm">
     <!-- Name -->
     <div class="mb-3">
-        <label class="inline-block mb-2">Name</label>
-        <input formControlName="name" type="text"
-        class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
-            duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
-        placeholder="Enter Name" minlength="3" />
-        <p *ngIf="registerForm.controls['name']?.errors?.['required']"
-            class="text-red-400">
-            Field is required
-        </p>
-        <p *ngIf="registerForm.controls['name'].errors?.['minlength']"
-            class="text-red-400">
-            the value you inputted is 
-            {{registerForm.controls['name'].errors?.['minlength'].actualLength}}
-            characters long.
-            It must be at least
-            {{registerForm.controls['name'].errors?.['minlength'].requiredLength}}
-        </p>
+       <label class="inline-block mb-2">Name</label>
+       <app-input [control]="name" placeholder="Enter name"></app-input>
     </div>
     <!-- Email -->
     <div class="mb-3">
-        <label class="inline-block mb-2">Email</label>
-        <input formControlName="email" type="email"
-        class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
-            duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
-        placeholder="Enter Email" />
+       <label class="inline-block mb-2">Email</label>
+       <app-input [control]="email" placeholder="Enter email" type="email"></app-input>
     </div>
     <!-- Age -->
     <div class="mb-3">
         <label class="inline-block mb-2">Age</label>
-        <input formControlName="age" type="number"
-        class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
-            duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400" />
+        <app-input [control]="age" placeholder="Enter Age" type="number"></app-input>
     </div>
     <!-- Password -->
     <div class="mb-3">
         <label class="inline-block mb-2">Password</label>
-        <input formControlName="password" type="password"
+        <input type="password"
         class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
             duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
         placeholder="Password" />
@@ -46,7 +26,7 @@
     <!-- Confirm Password -->
     <div class="mb-3">
         <label class="inline-block mb-2">Confirm Password</label>
-        <input formControlName="confirmPassword" type="password"
+        <input type="password"
         class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
             duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
         placeholder="Confirm Password" />
@@ -54,7 +34,7 @@
     <!-- Phone Number -->
     <div class="mb-3">
         <label class="inline-block mb-2">Phone Number</label>
-        <input formControlName="phoneNumber" type="text"
+        <input type="text"
         class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
             duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
         placeholder="Enter Phone Number" />
