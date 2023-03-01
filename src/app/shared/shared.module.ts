@@ -1,3 +1,4 @@
+import { AlertComponent } from './alert/alert.component';
 import { CommonModule } from '@angular/common';
 import { InputComponent } from './input/input.component';
 import { ModalComponent } from './modal/modal.component';
@@ -15,7 +16,8 @@ import { TabsContainerComponent } from './tabs-container/tabs-container.componen
     ModalComponent,
     TabsContainerComponent,
     TabComponent,
-    InputComponent
+    InputComponent,
+    AlertComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +28,8 @@ import { TabsContainerComponent } from './tabs-container/tabs-container.componen
     ModalComponent,
     TabComponent,
     TabsContainerComponent,
-    InputComponent
+    InputComponent,
+    AlertComponent
   ],
   providers: [
     ModalService
