@@ -1,12 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
+  
+  constructor(private auth: AngularFireAuth, private db: AngularFirestore ){ }
+
+  inSubmission = false;
+  
   name = new FormControl('', [
     Validators.required,
     Validators.minLength(3)
@@ -32,6 +40,7 @@ export class RegisterComponent {
     Validators.minLength(13),
     Validators.maxLength(13)
   ])
+  
   showAlert = false;
   alertMsg = 'Please wait! Your account is being created.';
   alertColor = 'blue';
@@ -45,9 +54,30 @@ export class RegisterComponent {
     phoneNumber: this.phoneNumber
   })
 
-  register() {
+  async register() {
     this.showAlert = true
     this.alertMsg = 'Please wait! Your account is being created.'
     this.alertColor = 'blue'
+    this.inSubmission = true
+    const { email, password } = this.registerForm.value
+    try {
+        const userCred = await this.auth.createUserWithEmailAndPassword(
+          email as string, password as string
+        )
+        await this.db.collection('users').add({
+          name: this.name.value,
+          age: this.age.value, 
+          phoneNumber: this.phoneNumber.value,
+          email: this.email.value
+        });
+    } catch (e){
+      console.error(e)
+      this.alertMsg = 'An unexpected error occurred. Please try again later.'
+      this.alertColor = 'red'
+      this.inSubmission = false
+      return
+    }
+    this.alertMsg='Success your account has been created.'
+    this.alertColor ='green'
   }
 }
