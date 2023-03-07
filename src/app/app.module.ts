@@ -8,11 +8,13 @@ import { NavComponent } from './nav/nav.component';
 import { NgModule } from '@angular/core';
 import { UserModule } from './user/user.module';
 import { environment } from 'src/environments/environment';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent
+    NavComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
