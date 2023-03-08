@@ -6,7 +6,10 @@ import { NgModule } from '@angular/core';
 const routes: Routes = [
   {
     path: 'manage',
-    component: ManageComponent
+    component: ManageComponent,
+    data: {
+      authOnly: true
+    }
   }
 ];
 
