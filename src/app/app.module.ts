@@ -11,13 +11,15 @@ import { NgModule } from '@angular/core';
 import { UserModule } from './user/user.module';
 import { VideoModule } from './video/video.module';
 import { environment } from 'src/environments/environment';
+import { ClipComponent } from './clip/clip.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     HomeComponent,
-    AboutComponent
+    AboutComponent,
+    ClipComponent
   ],
   imports: [
     BrowserModule,
