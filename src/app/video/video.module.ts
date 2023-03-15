@@ -1,10 +1,9 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { VideoRoutingModule } from './video-routing.module';
 import { ManageComponent } from './manage/manage.component';
+import { NgModule } from '@angular/core';
+import { SharedModule } from '../shared/shared.module';
 import { UploadComponent } from './upload/upload.component';
-
+import { VideoRoutingModule } from './video-routing.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +12,8 @@ import { UploadComponent } from './upload/upload.component';
   ],
   imports: [
     CommonModule,
-    VideoRoutingModule
+    VideoRoutingModule,
+    SharedModule
   ]
 })
 export class VideoModule { }
