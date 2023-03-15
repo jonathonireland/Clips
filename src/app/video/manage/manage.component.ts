@@ -11,14 +11,18 @@ export class ManageComponent implements OnInit {
 	
 	constructor(
 		private router: Router,
-		private route: ActivatedRoute,
+		private route: ActivatedRoute
 	){}
 	
 	ngOnInit(): void {
-		this.route.queryParamMap.subscribe((params: Params)=>{
-			console.log(params['get'])
-			this.videoOrder = params['get']('sort') === '2' ? params['get']('sort') : '1'
-		})
+		this.route.queryParamMap.subscribe (
+				(params: Params) => {
+					console.log(
+						params['get']
+					)
+				this.videoOrder = params['get']('sort') === '2' ? params['get']('sort') : '1'
+			}
+		)
 	}
  
 	sort(event: Event) {
