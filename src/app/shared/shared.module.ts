@@ -1,5 +1,6 @@
 import { AlertComponent } from './alert/alert.component';
 import { CommonModule } from '@angular/common';
+import { EventBlockerDirective } from './directives/event-blocker.directive';
 import { InputComponent } from './input/input.component';
 import { ModalComponent } from './modal/modal.component';
 import { ModalService } from '../services/modal.service';
@@ -17,7 +18,8 @@ import { TabsContainerComponent } from './tabs-container/tabs-container.componen
     TabsContainerComponent,
     TabComponent,
     InputComponent,
-    AlertComponent
+    AlertComponent,
+    EventBlockerDirective
   ],
   imports: [
     CommonModule,
@@ -29,7 +31,8 @@ import { TabsContainerComponent } from './tabs-container/tabs-container.componen
     TabComponent,
     TabsContainerComponent,
     InputComponent,
-    AlertComponent
+    AlertComponent,
+    EventBlockerDirective
   ],
   providers: [
     ModalService
