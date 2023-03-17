@@ -1,30 +1,57 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { v4 as uuid } from 'uuid';
 
 @Component({
-  selector: 'app-upload',
-  templateUrl: './upload.component.html',
-  styleUrls: ['./upload.component.scss']
+	selector: 'app-upload',
+	templateUrl: './upload.component.html',
+	styleUrls: ['./upload.component.scss']
 })
 export class UploadComponent implements OnInit {
-  isDragOver = false
-  nextStep = false
-  file: File | null = null
+	isDragOver = false
+	nextStep = false
+	file: File | null = null
+	
+	title = new FormControl('',{
+		validators: [
+			Validators.required,
+			Validators.minLength(3)
+		],
+		nonNullable: true
+	})
+	uploadForm = new FormGroup({
+		title: this.title
+	})
+	
+	constructor(
+		private storage: AngularFireStorage
+	) { }
+	
+	ngOnInit(): void {
+	}
 
-  constructor() { }
+	storeFile($event: Event){
+	    this.isDragOver = false
+	    this.file = ($event as DragEvent).dataTransfer?.files.item(0) ?? null
+	
+	    if(!this.file || this.file.type !== 'video/mp4'){
+	      return
+	    }
 
-  ngOnInit(): void {
-  }
+		this.title.setValue(
+			this.file.name.replace(/\.[^/.]+$/, '')
+		)
+	
+	    this.nextStep = true
+	}
 
-  storeFile($event: Event){
-    this.isDragOver = false
-    this.file = ($event as DragEvent).dataTransfer?.files.item(0) ?? null
+	uploadFile() {
+		const clipFileName = uuid();
+		const clipPath = `clips/${clipFileName}.mp4`
 
-    if(!this.file || this.file.type !== 'video/mp4'){
-      return
-    }
-    console.log(this.file)
-
-    this.nextStep = true
-  }
+		this.storage.upload(clipPath, this.file)
+	}
 
 }
