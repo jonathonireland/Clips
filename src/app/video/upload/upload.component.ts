@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UploadComponent implements OnInit {
   isDragOver = false
+  nextStep = false
   file: File | null = null
 
   constructor() { }
@@ -22,6 +23,8 @@ export class UploadComponent implements OnInit {
       return
     }
     console.log(this.file)
+
+    this.nextStep = true
   }
 
 }
