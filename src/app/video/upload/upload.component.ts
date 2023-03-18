@@ -4,6 +4,7 @@ import { last, switchMap } from 'rxjs/operators';
 
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { ClipService } from 'src/app/services/clip.service';
 import firebase from 'firebase/compat/app';
 import { v4 as uuid } from 'uuid';
 
@@ -37,7 +38,8 @@ export class UploadComponent implements OnInit {
 	
 	constructor(
 		private storage: AngularFireStorage,
-		private auth: AngularFireAuth
+		private auth: AngularFireAuth,
+		private clipsService : ClipService
 	) {
 		auth.user.subscribe( user => this.user = user )
 	}
@@ -82,12 +84,15 @@ export class UploadComponent implements OnInit {
 		).subscribe({
 			next: (url)=> {
 				const clip = {
-					uid: this.user?.uid,
-					displayName: this.user?.displayName,
+					uid: this.user?.uid as string,
+					displayName: this.user?.displayName as string,
 					title: this.title.value,
 					fileName: `${clipFileName}.mp4`,
 					url
 				}
+				
+				this.clipsService.createClip(clip)
+
 				console.log(clip)
 
 				this.alertColor = 'green'
