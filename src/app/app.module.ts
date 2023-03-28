@@ -1,6 +1,7 @@
 import { AboutComponent } from './about/about.component';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +14,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { UserModule } from './user/user.module';
 import { VideoModule } from './video/video.module';
 import { environment } from 'src/environments/environment';
+
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { environment } from 'src/environments/environment';
     AngularFireAuthModule,
     AngularFirestoreModule,
     VideoModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireStorageModule
   ],
   bootstrap: [AppComponent]
 })
