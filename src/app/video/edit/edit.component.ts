@@ -1,7 +1,10 @@
-import { Component, OnInit, OnDestroy, Input, OnChanges } from '@angular/core';
+import { 
+  Component, OnInit, OnDestroy, Input, OnChanges 
+} from '@angular/core';
 import {ModalService} from 'src/app/services/modal.service';
 import IClip from 'src/app/models/clip.model';
 import {FormControl, FormGroup, Validators } from '@angular/forms';
+import { ClipService } from 'src/app/services/clip.service';
 
 @Component({
   selector: 'app-edit',
@@ -11,6 +14,21 @@ import {FormControl, FormGroup, Validators } from '@angular/forms';
 export class EditComponent implements OnInit, OnDestroy, OnChanges {
 
 @Input() activeClip: IClip | null = null;
+
+//predefined alert variables
+defaultColor = 'blue'
+defaultAlert = 'Please Wait! Updating clip.'
+
+errorColor = 'red'
+errorAlert = 'Something went wrong. Try again later.'
+
+successColor = 'green'
+successAlert = 'Success!'
+
+inSubmission = false
+showAlert = false
+alertColor = this.defaultColor
+alertMsg = this.defaultAlert
 
 clipID = new FormControl('', {
   nonNullable: true
@@ -27,7 +45,10 @@ editForm = new FormGroup({
   id: this.clipID
 })
 
-  constructor(private modal: ModalService) { }
+  constructor(
+    private modal: ModalService,
+    private clipService: ClipService
+  ) { }
 
   ngOnInit(): void {
     this.modal.register('editClip')
@@ -44,5 +65,30 @@ editForm = new FormGroup({
 
     this.clipID.setValue(this.activeClip.docID)
     this.title.setValue(this.activeClip.title)
+  }
+
+  async submit(){
+
+    this.inSubmission = true
+    this.showAlert = true
+    this.alertColor = this.defaultColor
+    this.alertMsg = this.defaultAlert
+
+    try {
+      await this.clipService.updateClip(
+        this.clipID.value, 
+        this.title.value
+      )
+    }
+    catch(e){
+      this.inSubmission = false
+      this.alertColor = this.errorColor
+      this.alertMsg = this.errorAlert
+      return
+    }
+
+    this.inSubmission = false
+    this.alertColor = this.successColor
+    this.alertMsg = this.successAlert
   }
 }
